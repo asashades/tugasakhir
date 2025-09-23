@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Bimbingan & Metodologi Penelitian</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Maven Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Konfigurasi Custom Tailwind & CSS Tambahan */
+        body {
+            font-family: 'Maven Pro', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+
+        /* Styling untuk Tab Navigasi */
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            border-color: #4f46e5; /* indigo-600 */
+            color: #4f46e5;
+            background-color: #eef2ff; /* indigo-50 */
+        }
+
+        /* Styling untuk Callout (details/summary) */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary .icon-toggle {
+            transition: transform 0.3s ease-in-out;
+        }
+        details[open] summary .icon-toggle {
+            transform: rotate(90deg);
+        }
+
+        /* Styling untuk Print */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #print-area, #print-area * {
+                visibility: visible;
+            }
+            #print-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        /* Styling untuk loading spinner */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #4f46e5; /* Indigo */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Eaazyy Skripsi</h1>
+            <p class="mt-4 text-lg text-slate-300">Panduan menulis skripsi easy biar cepat lulus! ASA.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <!-- Konten Utama dengan Tab -->
+        <div id="main-content-area">
+            <!-- Navigasi Tab -->
+            <div class="mb-8 flex border-b border-slate-200 bg-white rounded-t-lg shadow-sm">
+                <button data-tab="materi" class="tab-btn active text-slate-600 font-semibold py-3 px-6 border-b-4 flex-grow text-center">
+                    <i class="fa-solid fa-book-open mr-2"></i> Materi Metodologi
+                </button>
+                <button data-tab="logbook" class="tab-btn text-slate-600 font-semibold py-3 px-6 border-b-4 border-transparent flex-grow text-center">
+                    <i class="fa-solid fa-clipboard-list mr-2"></i> Logbook Konsultasi
+                </button>
+            </div>
+
+            <!-- Panel Konten Tab -->
+            <div id="materi-panel" class="tab-panel space-y-12">
+                <!-- 1. Fenomena atau Masalah Penelitian -->
+                <section id="fenomena" class="bg-white p-8 rounded-2xl shadow-lg scroll-mt-20">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><i class="fa-solid fa-lightbulb text-yellow-500 mr-4"></i>1. Fenomena & Masalah Awal</h2>
+                    <p class="text-slate-600 mb-6">Langkah pertama dalam penelitian adalah menemukan fenomena menarik atau masalah nyata yang membutuhkan solusi. Fenomena yang baik adalah yang relevan, teramati, dan menimbulkan pertanyaan yang belum terjawab.</p>
+                     <div class="bg-slate-50 border-l-4 border-yellow-500 p-4 rounded-r-lg mb-6">
+                        <h3 class="font-bold text-lg mb-2"><i class="fa-solid fa-bullseye mr-2"></i>Poin Pembelajaran</h3>
+                        <ul class="list-disc list-inside text-slate-600 space-y-1">
+                            <li>Masalah penelitian harus berasal dari sumber yang kredibel (observasi, literatur, isu sosial).</li>
+                            <li>Pastikan masalah tersebut memiliki urgensi atau relevansi untuk diteliti.</li>
+                            <li>Rumuskan masalah dalam bentuk pertanyaan yang jelas dan fokus.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Tambahan: Link E-Book Library -->
+                <section id="ebook-library" class="bg-white p-8 rounded-2xl shadow-lg scroll-mt-20">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><i class="fa-solid fa-book-bookmark text-indigo-500 mr-4"></i>Perpustakaan E-Book</h2>
+                    <p class="text-slate-600 mb-6">Butuh referensi lebih lanjut? Kunjungi perpustakaan e-book kami untuk mendapatkan akses ke berbagai sumber daya dan literatur penelitian.</p>
+                    <a href="https://drive.google.com/drive/folders/1Od2M81h_2BofaOCHluE9GrmWkBAtaPht?usp=share_link" target="_blank" rel="noopener noreferrer" class="inline-block bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300 shadow-md">
+                        <i class="fa-solid fa-rocket mr-2"></i>Buka E-Book Library
+                    </a>
+                </section>
+
+                <!-- 2. Membedakan Gejala, Masalah, dan Akar Penyebab -->
+                <section id="symptom-vs-problem" class="bg-white p-8 rounded-2xl shadow-lg scroll-mt-20">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><i class="fa-solid fa-magnifying-glass text-cyan-500 mr-4"></i>2. Membedakan Gejala, Masalah, dan Akar Penyebab</h2>
+                    <p class="text-slate-600 mb-6">Dalam pemecahan masalah, sangat penting untuk tidak hanya "mengobati" gejalanya saja, tetapi menemukan akar masalah yang sesungguhnya. Ini adalah hirarki sebab-akibat yang bertingkat.</p>
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-cyan-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-2xl text-cyan-800 mb-2">Gejala (Symptom)</h3>
+                            <p class="text-slate-700">Tanda atau indikasi yang terlihat di permukaan. Inilah yang pertama kali kita sadari. <br><strong>Contoh:</strong> "Penjualan perusahaan menurun."</p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-2xl text-blue-800 mb-2">Masalah (Problem)</h3>
+                            <p class="text-slate-700">Kondisi utama yang menyebabkan gejala muncul. Ini yang perlu dipecahkan. <br><strong>Contoh:</strong> "Strategi pemasaran tidak sesuai dengan target pasar."</p>
+                        </div>
+                        <div class="bg-indigo-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-2xl text-indigo-800 mb-2">Akar Penyebab (Root Cause)</h3>
+                            <p class="text-slate-700">Penyebab paling mendasar dari masalah itu sendiri, yang jika diatasi akan menghilangkan masalah dan gejalanya. <br><strong>Contoh:</strong> "Tim pemasaran tidak memiliki data riset pasar yang memadai."</p>
+                        </div>
+                    </div>
+                    <details class="bg-slate-50 border border-slate-200 rounded-lg p-4 my-6 transition-all duration-300">
+                        <summary class="font-bold text-lg text-slate-800 cursor-pointer flex justify-between items-center">
+                            <span><i class="fa-solid fa-key mr-2"></i>Analogi Gunung Es</span>
+                            <i class="fa-solid fa-chevron-right icon-toggle"></i>
+                        </summary>
+                        <div class="mt-4 text-slate-700 space-y-3">
+                            <p><strong>Puncak Gunung Es (Terlihat):</strong> Gejala (Symptom).</p>
+                            <p><strong>Tepat di Bawah Permukaan Air:</strong> Masalah (Problem).</p>
+                            <p><strong>Dasar Gunung Es (Tersembunyi):</strong> Akar Penyebab (Root Cause).</p>
+                            <p class="mt-4 font-semibold">Mengatasi gejala hanya akan menjadi perbaikan sementara. Mengatasi akar penyebab akan memberikan solusi yang permanen.</p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- 3. Cara Menentukan Masalah Penelitian -->
+                <section id="cara-menentukan" class="bg-white p-8 rounded-2xl shadow-lg scroll-mt-20">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><i class="fa-solid fa-map-signs text-orange-500 mr-4"></i>3. Cara Merumuskan Latar Belakang Masalah</h2>
+                    <p class="text-slate-600 mb-6">Menyusun latar belakang masalah yang kuat adalah kunci untuk justifikasi penelitian Anda. Gunakan alur berpikir yang terstruktur untuk membangun argumen Anda dari umum ke khusus.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Masalah Umum -->
+                        <div class="bg-orange-50 p-6 rounded-lg text-center shadow-sm">
+                            <i class="fa-solid fa-globe text-3xl text-orange-500 mb-3"></i>
+                            <h3 class="font-bold text-lg text-orange-800 mb-2">1. Masalah Umum</h3>
+                            <p class="text-slate-700 text-sm">Mulailah dengan menjelaskan masalah secara umum. Contohnya, tingginya beban kerja di perusahaan sering menjadi tantangan besar yang mempengaruhi produktivitas dan kesejahteraan karyawan.</p>
+                        </div>
+                        <!-- Masalah Khusus -->
+                        <div class="bg-orange-50 p-6 rounded-lg text-center shadow-sm">
+                             <i class="fa-solid fa-magnifying-glass-location text-3xl text-orange-500 mb-3"></i>
+                            <h3 class="font-bold text-lg text-orange-800 mb-2">2. Masalah Khusus</h3>
+                            <p class="text-slate-700 text-sm">Persempit masalah ke kasus spesifik Anda. Contohnya, fokus pada beban kerja yang tinggi di divisi marketing PT. ABC dan bagaimana hal ini secara spesifik mempengaruhi kinerja mereka.</p>
+                        </div>
+                        <!-- Perbedaan Realita & Harapan -->
+                        <div class="bg-orange-50 p-6 rounded-lg text-center shadow-sm">
+                             <i class="fa-solid fa-arrows-left-right-to-line text-3xl text-orange-500 mb-3"></i>
+                            <h3 class="font-bold text-lg text-orange-800 mb-2">3. Realita vs Harapan</h3>
+                            <p class="text-slate-700 text-sm">Jelaskan kesenjangan (gap) antara kondisi saat ini dan yang diinginkan. Contoh, divisi diharapkan menyelesaikan proyek efisien, namun kenyataannya proyek sering tertunda.</p>
+                        </div>
+                        <!-- Masalah yang Ingin Diselesaikan -->
+                        <div class="bg-orange-50 p-6 rounded-lg text-center shadow-sm">
+                            <i class="fa-solid fa-bullseye-arrow text-3xl text-orange-500 mb-3"></i>
+                            <h3 class="font-bold text-lg text-orange-800 mb-2">4. Masalah yang Diselesaikan</h3>
+                            <p class="text-slate-700 text-sm">Nyatakan secara eksplisit masalah yang ingin Anda atasi. Contoh, "Tujuan penelitian ini adalah merancang sistem untuk mengurangi beban kerja berlebih dan meningkatkan efisiensi."</p>
+                        </div>
+                        <!-- Metode dan Alasan -->
+                        <div class="bg-orange-50 p-6 rounded-lg text-center shadow-sm">
+                            <i class="fa-solid fa-gears text-3xl text-orange-500 mb-3"></i>
+                            <h3 class="font-bold text-lg text-orange-800 mb-2">5. Metode dan Alasan</h3>
+                            <p class="text-slate-700 text-sm">Jelaskan metode yang akan digunakan dan mengapa. Contoh, "Metode simulasi antrian dipilih karena kemampuannya dalam mengidentifikasi bottleneck tanpa mengganggu sistem nyata."</p>
+                        </div>
+                        <!-- State of the Art -->
+                        <div class="bg-orange-50 p-6 rounded-lg text-center shadow-sm">
+                             <i class="fa-solid fa-book-journal-whills text-3xl text-orange-500 mb-3"></i>
+                            <h3 class="font-bold text-lg text-orange-800 mb-2">6. State of the Art</h3>
+                            <p class="text-slate-700 text-sm">Sebutkan beberapa penelitian terdahulu yang relevan untuk menunjukkan posisi dan kebaruan penelitian Anda di antara studi yang sudah ada.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Contoh Rumusan Masalah -->
+                <section id="contoh-rumusan" class="bg-white p-8 rounded-2xl shadow-lg scroll-mt-20">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><i class="fa-solid fa-file-lines text-green-500 mr-4"></i>4. Contoh Rumusan Masalah</h2>
+                    <p class="text-slate-600 mb-6">Setelah latar belakang tersusun, rumusan masalah dapat ditulis dalam bentuk pertanyaan (interogatif) atau pernyataan (deklaratif) untuk mengarahkan fokus penelitian.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-lg text-green-800 mb-2"><i class="fa-solid fa-question-circle mr-2"></i>Bentuk Pertanyaan</h3>
+                            <ul class="list-disc list-inside text-slate-700 space-y-2">
+                                <li>"Bagaimana pengaruh lingkungan kerja terhadap produktivitas kerja di perusahaan X?"</li>
+                                <li>"Faktor-faktor apa saja yang harus diperbaiki berdasarkan prinsip-prinsip ergonomi?"</li>
+                            </ul>
+                        </div>
+                         <div class="bg-green-50 p-6 rounded-lg">
+                            <h3 class="font-bold text-lg text-green-800 mb-2"><i class="fa-solid fa-bullhorn mr-2"></i>Bentuk Pernyataan</h3>
+                            <ul class="list-disc list-inside text-slate-700 space-y-2">
+                                <li>"Penelitian ini bertujuan untuk mengetahui pengaruh lingkungan kerja terhadap produktivitas kerja di perusahaan X."</li>
+                                <li>"Studi ini akan menentukan faktor-faktor yang harus diperbaiki berdasarkan prinsip-prinsip ergonomi."</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Kerangka Berpikir & Penetapan Tujuan -->
+                <section id="kerangka-tujuan" class="bg-white p-8 rounded-2xl shadow-lg scroll-mt-20">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><i class="fa-solid fa-brain-circuit text-purple-500 mr-4"></i>5. Kerangka Berpikir & Penetapan Tujuan</h2>
+                    <p class="text-slate-600 mb-6">Setelah masalah teridentifikasi, gunakan kerangka kerja yang terstruktur untuk merangkai ide dan menetapkan tujuan penelitian yang jelas dan terukur.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Metode STAR -->
+                        <details class="bg-purple-50 border border-purple-200 rounded-lg p-4 transition-all duration-300">
+                            <summary class="font-bold text-lg text-purple-800 cursor-pointer flex justify-between items-center">
+                                <span><i class="fa-solid fa-star mr-2"></i>Metode STAR untuk Merangkai Ide</span>
+                                <i class="fa-solid fa-chevron-right icon-toggle"></i>
+                            </summary>
+                            <div class="mt-4 text-slate-700 space-y-3">
+                                <p><strong class="text-purple-700">S (Situation):</strong> Jelaskan situasi atau konteks masalahnya. (Contoh: "Di PT. ABC, terjadi penumpukan produk di lini perakitan.")</p>
+                                <p><strong class="text-purple-700">T (Task):</strong> Apa tugas atau tujuan yang ingin dicapai? (Contoh: "Tugasnya adalah mengurangi waktu tunggu dan meningkatkan output.")</p>
+                                <p><strong class="text-purple-700">A (Action):</strong> Tindakan atau metode apa yang diusulkan? (Contoh: "Akan diterapkan metode simulasi untuk menemukan bottleneck.")</p>
+                                <p><strong class="text-purple-700">R (Results):</strong> Apa hasil yang diharapkan dari tindakan tersebut? (Contoh: "Hasilnya diharapkan berupa usulan perbaikan layout yang mengurangi waktu tunggu sebesar 20%.")</p>
+                            </div>
+                        </details>
+                        <!-- Metode SMART -->
+                        <details class="bg-indigo-50 border border-indigo-200 rounded-lg p-4 transition-all duration-300">
+                            <summary class="font-bold text-lg text-indigo-800 cursor-pointer flex justify-between items-center">
+                                <span><i class="fa-solid fa-bullseye-arrow mr-2"></i>Tujuan SMART untuk Penelitian</span>
+                                <i class="fa-solid fa-chevron-right icon-toggle"></i>
+                            </summary>
+                            <div class="mt-4 text-slate-700 space-y-3">
+                                <p><strong class="text-indigo-700">S (Specific):</strong> Tujuan harus jelas dan spesifik. Hindari kalimat yang ambigu.</p>
+                                <p><strong class="text-indigo-700">M (Measurable):</strong> Tujuan harus dapat diukur, baik secara kuantitatif maupun kualitatif.</p>
+                                <p><strong class="text-indigo-700">A (Achievable):</strong> Tujuan harus realistis untuk dicapai dengan sumber daya yang ada (waktu, dana, keahlian).</p>
+                                <p><strong class="text-indigo-700">R (Relevant):</strong> Tujuan harus relevan dengan masalah penelitian yang diangkat.</p>
+                                <p><strong class="text-indigo-700">T (Time-bound):</strong> Tetapkan batas waktu yang jelas untuk mencapai tujuan penelitian.</p>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+                
+                <!-- 6. Konsep Scientific Research & Prosesnya -->
+                <section id="scientific" class="bg-white p-8 rounded-2xl shadow-lg scroll-mt-20">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><i class="fa-solid fa-flask-vial text-sky-500 mr-4"></i>6. Konsep & Proses Penelitian Ilmiah</h2>
+                    <p class="text-slate-600 mb-6">Penelitian ilmiah adalah proses sistematis, terkontrol, empiris, dan kritis untuk menguji hipotesis. Tujuannya adalah untuk menghasilkan pengetahuan yang dapat diandalkan dan diverifikasi.</p>
+                     <div class="bg-slate-50 border-l-4 border-sky-500 p-4 rounded-r-lg mb-6">
+                        <h3 class="font-bold text-lg mb-2"><i class="fa-solid fa-bullseye mr-2"></i>Poin Kunci</h3>
+                        <ul class="list-disc list-inside text-slate-600 space-y-1">
+                            <li>Penelitian ilmiah didasarkan pada data dan bukti, bukan opini.</li>
+                            <li>Sifatnya harus objektif dan dapat direplikasi oleh peneliti lain.</li>
+                            <li>Prosesnya mengikuti alur logis: Identifikasi Masalah → Tinjauan Pustaka → Desain Penelitian → Analisis Data → Kesimpulan.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- 7. Tips Menulis Abstrak (Metode IMRAD) -->
+                <section id="imrad" class="bg-white p-8 rounded-2xl shadow-lg scroll-mt-20">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><i class="fa-solid fa-file-signature text-teal-500 mr-4"></i>7. Tips Menulis Abstrak (Metode IMRAD)</h2>
+                    <p class="text-slate-600 mb-6">Abstrak adalah rangkuman singkat dari keseluruhan penelitian Anda. Gunakan struktur IMRAD untuk memastikan semua komponen penting tercakup secara ringkas dan jelas.</p>
+                    <div class="space-y-4">
+                        <div class="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-500">
+                             <h3 class="font-bold text-lg text-teal-800">I - Introduction (Pendahuluan)</h3>
+                             <p class="text-slate-700 mt-1">Satu atau dua kalimat yang menjelaskan konteks dan pentingnya masalah penelitian Anda. Jawab pertanyaan: "Mengapa penelitian ini perlu dilakukan?"</p>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-500">
+                             <h3 class="font-bold text-lg text-teal-800">M - Methods (Metode)</h3>
+                             <p class="text-slate-700 mt-1">Jelaskan secara singkat bagaimana Anda melakukan penelitian. Sebutkan desain, partisipan (jika ada), dan teknik analisis data yang digunakan. Jawab: "Apa yang Anda lakukan?"</p>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-500">
+                             <h3 class="font-bold text-lg text-teal-800">R - Results (Hasil)</h3>
+                             <p class="text-slate-700 mt-1">Sajikan temuan utama dari penelitian Anda secara objektif, tanpa interpretasi. Sebutkan data atau statistik paling penting. Jawab: "Apa yang Anda temukan?"</p>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-500">
+                             <h3 class="font-bold text-lg text-teal-800">A & D - and Discussion (dan Diskusi/Kesimpulan)</h3>
+                             <p class="text-slate-700 mt-1">Simpulkan arti dari temuan Anda. Jelaskan implikasi atau kontribusi utama dari penelitian Anda. Jawab: "Apa arti dari temuan tersebut?"</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="logbook-panel" class="tab-panel hidden">
+                <section id="logbook" class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-2">Form Logbook Konsultasi</h2>
+                    <p class="text-slate-600 mb-8">Catat setiap sesi bimbingan untuk melacak progres skripsi.</p>
+                    
+                    <!-- Form Input -->
+                    <form id="logbookForm" class="mb-10 p-6 bg-slate-50 rounded-lg border border-slate-200">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Kolom Kiri -->
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="nama" class="block text-sm font-medium text-slate-700 mb-1">Nama Mahasiswa</label>
+                                    <input type="text" id="nama" class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                                <div>
+                                    <label for="nim" class="block text-sm font-medium text-slate-700 mb-1">NIM</label>
+                                    <input type="text" id="nim" class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                                <div>
+                                    <label for="tanggal" class="block text-sm font-medium text-slate-700 mb-1">Tanggal Bimbingan</label>
+                                    <input type="date" id="tanggal" class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </div>
+                            <!-- Kolom Kanan -->
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="dosen" class="block text-sm font-medium text-slate-700 mb-1">Dosen Pembimbing</label>
+                                    <input type="text" id="dosen" class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                                <div>
+                                    <label for="catatan" class="block text-sm font-medium text-slate-700 mb-1">Catatan Bimbingan</label>
+                                    <textarea id="catatan" rows="4" class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-right">
+                            <button type="submit" id="submitButton" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300 shadow-md">
+                                <i class="fa-solid fa-plus mr-2"></i>Tambah Catatan
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Header Tabel, Filter, Print & Notifikasi -->
+                    <div class="flex flex-wrap justify-between items-center mb-4 gap-4">
+                        <h3 class="text-2xl font-bold text-slate-800">Riwayat Bimbingan</h3>
+                        <div class="flex items-center gap-2 no-print">
+                             <label for="studentFilter" class="text-sm font-medium text-slate-700">Filter Mahasiswa:</label>
+                             <select id="studentFilter" class="bg-white border border-slate-300 rounded-md shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500 py-1 px-2">
+                                 <option value="all">Tampilkan Semua</option>
+                             </select>
+                             <button id="resetFilterBtn" title="Reset Filter" class="text-slate-500 hover:text-indigo-600 text-lg">
+                                 <i class="fa-solid fa-times-circle"></i>
+                             </button>
+                         </div>
+                        <div class="flex items-center gap-4">
+                            <span id="statusMessage" class="text-sm text-slate-500"></span>
+                             <button id="printButton" class="bg-slate-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-700 transition-colors duration-300 shadow-md no-print">
+                                <i class="fa-solid fa-print mr-2"></i>Cetak Logbook
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- Tabel Logbook -->
+                    <div id="print-area" class="overflow-x-auto">
+                         <h2 id="print-title" class="text-2xl font-bold text-center mb-4 hidden">Logbook Bimbingan Skripsi</h2>
+                        <table id="logbookTable" class="min-w-full bg-white border border-slate-200 hidden">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Tanggal</th>
+                                    <th class="px-6 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Nama & NIM</th>
+                                    <th class="px-6 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Dosen</th>
+                                    <th class="px-6 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Catatan</th>
+                                    <th class="px-6 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider no-print">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logbookBody" class="divide-y divide-slate-200">
+                                <!-- Data akan dimuat di sini oleh JavaScript -->
+                            </tbody>
+                        </table>
+                        <div id="loading-indicator" class="text-center py-8">
+                            <div class="loader mx-auto"></div>
+                            <p class="mt-4 text-slate-500">Memuat data dari spreadsheet...</p>
+                        </div>
+                        <p id="empty-message" class="text-center text-slate-500 py-8 hidden">Belum ada data bimbingan.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="bg-slate-800 text-slate-300 mt-12 py-6 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2025 - Sistem Bimbingan Skripsi by ASA, copyright gabole plagiat!, senggol tampol.</p>
+            <p class="mt-2 text-slate-400">
+                <a href="https://www.tiktok.com/@asashades" target="_blank" rel="noopener noreferrer" class="font-semibold text-sky-400 hover:text-sky-300">
+                   <i class="fa-brands fa-tiktok mr-1"></i> Follow @asashades
+               </a>
+           </p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- KONFIGURASI ---
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxUSqn7TgjPt1DtFBX9YMgK2KJBlCBESkc39HRmI_LV7kgxE5z24-Jn46LNpMSVFUIL/exec";
+
+        // --- Variabel Global & Element DOM ---
+        let allLogbookEntries = [];
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const logbookForm = document.getElementById('logbookForm');
+        const logbookBody = document.getElementById('logbookBody');
+        const printButton = document.getElementById('printButton');
+        const emptyMessage = document.getElementById('empty-message');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const logbookTable = document.getElementById('logbookTable');
+        const statusMessage = document.getElementById('statusMessage');
+        const submitButton = document.getElementById('submitButton');
+        const studentFilter = document.getElementById('studentFilter');
+        const resetFilterBtn = document.getElementById('resetFilterBtn');
+
+        // --- Logika Navigasi Tab ---
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.dataset.tab;
+                tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === targetTab));
+                document.querySelectorAll('.tab-panel').forEach(panel => {
+                    panel.classList.toggle('hidden', panel.id !== `${targetTab}-panel`);
+                });
+            });
+        });
+
+        const showStatus = (message, isError = false) => {
+            statusMessage.textContent = message;
+            statusMessage.className = isError ? 'text-sm text-red-600' : 'text-sm text-green-600';
+            setTimeout(() => statusMessage.textContent = '', 3000);
+        };
+        
+        const getStudentIdentifier = (entry) => {
+            if (!entry.nama || !entry.nim) return null;
+            const firstName = entry.nama.split(' ')[0];
+            const lastThreeOfNim = entry.nim.slice(-3);
+            return `${firstName} - ${lastThreeOfNim}`;
+        };
+
+        const populateStudentFilter = (entries) => {
+            const studentIds = new Set();
+            entries.forEach(entry => {
+                const id = getStudentIdentifier(entry);
+                if (id) studentIds.add(id);
+            });
+
+            // Simpan value yang sedang dipilih
+            const selectedValue = studentFilter.value;
+            
+            // Hapus opsi lama, kecuali yang pertama ("Tampilkan Semua")
+            while (studentFilter.options.length > 1) {
+                studentFilter.remove(1);
+            }
+
+            Array.from(studentIds).sort().forEach(id => {
+                const option = document.createElement('option');
+                option.value = id;
+                option.textContent = id;
+                studentFilter.appendChild(option);
+            });
+            
+            // Kembalikan value yang dipilih jika masih ada
+            studentFilter.value = selectedValue;
+        };
+        
+        const displayTable = (entries) => {
+            logbookBody.innerHTML = '';
+            if (entries.length > 0) {
+                 entries.forEach(entry => addRowToTable(entry, false));
+                 emptyMessage.classList.add('hidden');
+                 logbookTable.classList.remove('hidden');
+            } else {
+                 emptyMessage.classList.remove('hidden');
+                 logbookTable.classList.add('hidden');
+            }
+             loadingIndicator.classList.add('hidden');
+        };
+
+        const addRowToTable = (rowData, prepend = true) => {
+            const row = document.createElement('tr');
+            row.setAttribute('data-id', rowData.id);
+            row.setAttribute('data-student-id', getStudentIdentifier(rowData));
+
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap">${new Date(rowData.tanggal).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric'})}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="font-semibold">${rowData.nama}</div>
+                    <div class="text-sm text-slate-500">${rowData.nim}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">${rowData.dosen}</td>
+                <td class="px-6 py-4 text-sm text-slate-700 whitespace-pre-wrap">${rowData.catatan}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium no-print">
+                    <button class="delete-btn text-red-600 hover:text-red-900" data-id="${rowData.id}">Hapus</button>
+                </td>
+            `;
+
+            if (prepend) {
+                logbookBody.prepend(row);
+            } else {
+                logbookBody.appendChild(row);
+            }
+            row.querySelector('.delete-btn').addEventListener('click', handleDelete);
+        };
+        
+        const filterAndDisplay = () => {
+            const selectedStudent = studentFilter.value;
+            const allRows = logbookBody.querySelectorAll('tr');
+            let visibleCount = 0;
+            
+            allRows.forEach(row => {
+                if (selectedStudent === 'all' || row.dataset.studentId === selectedStudent) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            if (visibleCount > 0) {
+                emptyMessage.classList.add('hidden');
+                logbookTable.classList.remove('hidden');
+            } else {
+                emptyMessage.classList.remove('hidden');
+                logbookTable.classList.add('hidden');
+            }
+        };
+
+        studentFilter.addEventListener('change', filterAndDisplay);
+        resetFilterBtn.addEventListener('click', () => {
+            studentFilter.value = 'all';
+            filterAndDisplay();
+        });
+
+        const loadLogbookData = async () => {
+            if (SCRIPT_URL === "MASUKKAN_URL_WEB_APP_ANDA_DI_SINI") {
+                 loadingIndicator.innerHTML = '<p class="text-red-500">Harap konfigurasikan URL Google Apps Script pada file HTML.</p>';
+                 return;
+            }
+            try {
+                const response = await fetch(SCRIPT_URL);
+                if (!response.ok) throw new Error('Gagal mengambil data.');
+                const data = await response.json();
+                allLogbookEntries = data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); // Urutkan dari terbaru
+                
+                populateStudentFilter(allLogbookEntries);
+                displayTable(allLogbookEntries);
+            } catch (error) {
+                console.error("Error loading data:", error);
+                loadingIndicator.innerHTML = `<p class="text-red-500">Gagal memuat data. Periksa konsol untuk detail.</p>`;
+            }
+        };
+
+        logbookForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i>Menyimpan...`;
+            submitButton.disabled = true;
+
+            const formData = {
+                nama: document.getElementById('nama').value.trim(),
+                nim: document.getElementById('nim').value.trim(),
+                tanggal: document.getElementById('tanggal').value,
+                dosen: document.getElementById('dosen').value.trim(),
+                catatan: document.getElementById('catatan').value.trim(),
+            };
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'add', data: formData })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    allLogbookEntries.unshift(result.data);
+                    addRowToTable(result.data, true);
+                    populateStudentFilter(allLogbookEntries);
+                    logbookForm.reset();
+                    filterAndDisplay(); // Terapkan filter saat ini
+                    showStatus('Data berhasil disimpan!');
+                } else {
+                    throw new Error(result.message || 'Gagal menyimpan data.');
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                showStatus('Gagal menyimpan data.', true);
+            } finally {
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+            }
+        });
+        
+        const handleDelete = async (e) => {
+            const button = e.target;
+            const id = button.dataset.id;
+            const row = button.closest('tr');
+
+            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                row.style.opacity = '0.5';
+                button.disabled = true;
+
+                try {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'delete', id: id })
+                    });
+                    const result = await response.json();
+
+                    if (result.success) {
+                        allLogbookEntries = allLogbookEntries.filter(entry => entry.id !== id);
+                        row.remove();
+                        populateStudentFilter(allLogbookEntries);
+                        filterAndDisplay();
+                        showStatus('Data berhasil dihapus!');
+                    } else {
+                        throw new Error(result.message || 'Gagal menghapus data.');
+                    }
+                } catch (error) {
+                    console.error("Error deleting data:", error);
+                    showStatus('Gagal menghapus data.', true);
+                    row.style.opacity = '1';
+                    button.disabled = false;
+                }
+            }
+        };
+
+        printButton.addEventListener('click', () => {
+            const printTitle = document.getElementById('print-title');
+            printTitle.classList.remove('hidden');
+            window.print();
+            printTitle.classList.add('hidden');
+        });
+
+        // --- Inisialisasi ---
+        loadLogbookData();
+    });
+    </script>
+</body>
+</html>
+
