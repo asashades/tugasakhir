@@ -443,9 +443,14 @@
         };
         
         const getStudentIdentifier = (entry) => {
-            if (!entry.nama || !entry.nim) return null;
-            const firstName = entry.nama.split(' ')[0];
-            const lastThreeOfNim = entry.nim.slice(-3);
+            // FIX: Ensure entry.nama and entry.nim are treated as strings before using string methods.
+            const namaStr = String(entry.nama || '');
+            const nimStr = String(entry.nim || '');
+
+            if (!namaStr.trim() || !nimStr.trim()) return null;
+
+            const firstName = namaStr.split(' ')[0];
+            const lastThreeOfNim = nimStr.slice(-3);
             return `${firstName} - ${lastThreeOfNim}`;
         };
 
@@ -581,9 +586,16 @@
                 const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
                     mode: 'cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    // FIX: Change Content-Type to text/plain to avoid preflight CORS issues
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({ action: 'add', data: formData })
                 });
+
+                if (!response.ok) {
+                    // Throw an error if the response status is not OK (e.g., 4xx, 5xx)
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                
                 const result = await response.json();
 
                 if (result.success) {
@@ -604,40 +616,61 @@
                 submitButton.disabled = false;
             }
         });
-    
+        
         const handleDelete = async (e) => {
             const button = e.target;
             const id = button.dataset.id;
             const row = button.closest('tr');
 
-            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                row.style.opacity = '0.5';
-                button.disabled = true;
-
-                try {
-                    const response = await fetch(SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: 'delete', id: id })
-                    });
-                    const result = await response.json();
-
-                    if (result.success) {
-                        allLogbookEntries = allLogbookEntries.filter(entry => entry.id !== id);
-                        row.remove();
-                        populateStudentFilter(allLogbookEntries);
-                        filterAndDisplay();
-                        showStatus('Data berhasil dihapus!');
-                    } else {
-                        throw new Error(result.message || 'Gagal menghapus data.');
+            // FIX: Replaced unsupported `confirm()` dialog with a two-click confirmation.
+            // On first click, the button changes to ask for confirmation.
+            // On second click, it proceeds with deletion.
+            if (!button.classList.contains('confirm-delete')) {
+                button.textContent = 'Yakin? Hapus';
+                button.classList.add('confirm-delete');
+                // Revert back after 3 seconds if not clicked again
+                setTimeout(() => {
+                    if (button.classList.contains('confirm-delete')) {
+                       button.textContent = 'Hapus';
+                       button.classList.remove('confirm-delete');
                     }
-                } catch (error) {
-                    console.error("Error deleting data:", error);
-                    showStatus('Gagal menghapus data.', true);
-                    row.style.opacity = '1';
-                    button.disabled = false;
+                }, 3000);
+                return; // Stop execution until the second click
+            }
+
+            row.style.opacity = '0.5';
+            button.disabled = true;
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: 'delete', id: id })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
                 }
+
+                const result = await response.json();
+
+                if (result.success) {
+                    allLogbookEntries = allLogbookEntries.filter(entry => entry.id !== id);
+                    row.remove();
+                    populateStudentFilter(allLogbookEntries);
+                    filterAndDisplay();
+                    showStatus('Data berhasil dihapus!');
+                } else {
+                    throw new Error(result.message || 'Gagal menghapus data.');
+                }
+            } catch (error) {
+                console.error("Error deleting data:", error);
+                showStatus('Gagal menghapus data.', true);
+                row.style.opacity = '1';
+                button.disabled = false;
+                button.textContent = 'Hapus';
+                button.classList.remove('confirm-delete');
             }
         };
 
